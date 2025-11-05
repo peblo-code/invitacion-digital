@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Invitación Digital</title>
+</head>
+<body>
+    <div class="hero">
+        <div class="texto-hero">
+            <h1>¡Estás Invitado/a!</h1>
+            <p>Únete a nosotros para una celebración especial.</p>
+        </div>
+    </div>
+
+    <div class="cuenta-regresiva">
+        <h2>Cuenta Regresiva para el Evento</h2>
+        <div id="countdown">
+            <div>
+                <span id="days">00</span>
+                <div>Días</div>
+            </div>
+            <div>
+                <span id="hours">00</span>
+                <div>Horas</div>
+            </div>
+            <div>
+                <span id="minutes">00</span>
+                <div>Minutos</div>
+            </div>
+            <div>
+                <span id="seconds">00</span>
+                <div>Segundos</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foto-grupal">
+        <img src="./img/foto-grupal.png" alt="Foto Grupal">
+        <p>¡Foto con el grupo!</p>
+    </div>
+
+    <div class="detalles-evento">
+        <h2>Detalles del Evento</h2>
+        <p><strong>Fecha:</strong> 25 de Diciembre de 2025</p>
+        <p><strong>Hora:</strong> 7:00 PM</p>
+        <p><strong>Lugar:</strong> Salón de Eventos La Fiesta, Calle Principal 123</p>
+    </div>
+
+    <div class="confirmacion-asistencia">
+        <h2>Confirma tu Asistencia</h2>
+        <p>Por favor, confirma tu asistencia antes del 10 de Diciembre de 2024.</p>
+        <a href="rsvp.html">Confirmar Asistencia</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Invitación Digital. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Configurar la fecha del evento
+        const eventDate = new Date("December 25, 2025 19:00:00").getTime();
+        const countdownElement = document.getElementById("countdown");
+        const daysElement = document.getElementById("days");
+        const hoursElement = document.getElementById("hours");
+        const minutesElement = document.getElementById("minutes");
+        const secondsElement = document.getElementById("seconds");
+        // Actualizar la cuenta regresiva cada segundo
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            // Cálculos de tiempo
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar los resultados en los elementos correspondientes
+            daysElement.innerText = String(days).padStart(2, '0');
+            hoursElement.innerText = String(hours).padStart(2, '0');
+            minutesElement.innerText = String(minutes).padStart(2, '0');
+            secondsElement.innerText = String(seconds).padStart(2, '0');
+
+            // Si la cuenta regresiva termina, mostrar un mensaje
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = "¡El evento ha comenzado!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
